@@ -66,7 +66,7 @@ func NewBitTrie6[V any]() *BitTrie6[V] {
 	return &BitTrie6[V]{root: &bitNode6[V]{}}
 }
 
-func (t *BitTrie6[V]) Insert(prefix string, value *V) error {
+func (t *BitTrie6[V]) Insert(prefix string, value V) error {
 	addr, bitLen, err := parseIPorCIDRIPv6(prefix)
 	if err != nil {
 		return err
@@ -86,7 +86,7 @@ func (t *BitTrie6[V]) Insert(prefix string, value *V) error {
 		}
 		cur = cur.children[b]
 	}
-	cur.value = value
+	cur.value = &value
 	return nil
 }
 
